@@ -1,5 +1,5 @@
 const propName = 'weatherdata';
-const weatherApiKey = '5484ec107e02c3769b4d8cb3f6bb544e'
+const weatherApiKey = 'здес ключ от апи'
 const defaultData = [{
     "id": 1486209,
     "name": "Екатеринбург"
