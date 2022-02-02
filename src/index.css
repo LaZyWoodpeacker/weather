@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Slab:wght@700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  min-height: 100vh;
+  font-family: Roboto;
+}
+
+ul,li{
+  margin: 0;
+  padding: 0;
+}
+
+#root{
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 25px;
+  box-sizing: border-box;
+}
+
+li{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.card{
+  background: #528080;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: Roboto;
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  color: #FFFFFF;
+  margin-bottom: 1em;
+}
+
+.card h3{
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Roboto Slab';
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.095em;
+}
+
+.card__header{
+  display: flex;
+  justify-content: space-between;  
+  padding: 25px 25px 0 25px;
+}
+
+.card__info{
+  display: flex;
+}
+
+.card__info_text img{
+  margin: 14px 14px 0 0;
+}
+
+.card__info_text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size:14px;
+}
+
+.card__info_temp{
+  font-family: 'Roboto Slab';
+  font-size: 72px;
+  font-weight: 700;
+  letter-spacing: 0.095em;
+}
+
+.card__info_fill span{
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.card__delbtn{
+  width: 24px;
+  cursor: pointer;
+}
+
+.card__footer{
+  display: flex;
+  justify-content: space-between;  
+  padding: 0 25px 25px 25px;
+}
+
+.controls{
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin:24px 0 24px 0;
+}
+
+.controls input{
+    border: none;
+    border-bottom: 2px solid #528080;
+    outline:0; 
+    margin-bottom: 10px;
+    padding: 16px;
+    font-size: 18px;
+}
+
+.controls button{
+  display:inline-block;
+  padding:0.35em 1.2em;
+  border:0;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.2s;
+  cursor: pointer;
+  padding: 16px;
+  font-size: 24px;
+  background-color:#528080;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.controls button:hover{
+  background-color:#48484A;  
+}
+
+.notify{
+  position: fixed;
+  padding: 1em;
+  bottom: 0;
+}
+
+.notify__message{
+  background-color:#48484A;
+  color:#FFFFFF;
+  padding: 1em;
+  border-radius: 2px;
+}
