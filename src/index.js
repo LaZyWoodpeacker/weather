@@ -5,8 +5,6 @@ import './index.css';
 import store from './store'
 import WeatherList from './view/weatherlist'
 
-localStorage.setItem('weatherdata', null);
-
 ReactDOM.render(
   <Provider store={store}>
     <WeatherList />

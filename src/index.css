@@ -25,6 +25,13 @@ ul,li{
   box-sizing: border-box;
 }
 
+ul{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+}
+
 li{
   display: flex;
   flex-direction: column;
@@ -38,7 +45,8 @@ li{
   font-size: 20px;
   letter-spacing: 0.1em;
   color: #FFFFFF;
-  margin-bottom: 1em;
+  margin: 1em;
+  box-sizing: border-box;
 }
 
 .card h3{
@@ -98,6 +106,7 @@ li{
   display: flex;
   flex-direction: column;
   margin:24px 0 24px 0;
+  box-sizing: border-box;
 }
 
 .controls input{
@@ -141,4 +150,50 @@ li{
   color:#FFFFFF;
   padding: 1em;
   border-radius: 2px;
+}
+
+
+@media (max-width: 504px) {  
+  #root{
+    padding-top: 0;
+  }
+
+  ul{
+    max-width: 100%;
+  }
+
+  .controls{
+    max-width: 100%;
+    border: 2px solid white;    
+  }
+
+ .card{
+   box-shadow: none;
+   max-width: 100%;
+   border: 2px solid white;
+   margin: 0;
+ }
+
+  .card__info{
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .card__footer{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card__info_text{
+    align-items: center;
+  }
+
+  .card__delbtn{
+    margin-top: 1em;
+  }
+
+  .card__info img{
+    max-width: 200px;
+  }
 }

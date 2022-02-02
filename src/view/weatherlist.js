@@ -30,7 +30,7 @@ function WeatherList(props) {
 
     return (<>
         <ul>
-            {props.places.map(city => <Place cityName={city.name} key={city.id} onRemove={id => {
+            {props.places.map(city => <Place cityId={city.id} key={city.id} onRemove={id => {
                 props.dispatch(removeCity(id));
             }}></Place>)}
         </ul>

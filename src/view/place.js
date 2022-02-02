@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getDataFromApi } from '../actions';
 
-function Place({ cityName, onRemove }) {
+function Place({ cityId, onRemove }) {
     const [loading, setLoading] = useState(true);
     const [id, setId] = useState(0);
     const [img, setImg] = useState('');
@@ -12,7 +12,7 @@ function Place({ cityName, onRemove }) {
     const [press, setPress] = useState('');
     const [description, setDescription] = useState('');
     useEffect(() => {
-        getDataFromApi(cityName)
+        getDataFromApi(cityId)
             .then(data => {
                 setImg(data.weather[0].icon);
                 setDescription(data.weather[0].description);
@@ -27,7 +27,7 @@ function Place({ cityName, onRemove }) {
 
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [cityName])
+    }, [cityId])
 
     if (loading) return <div className="placeholder"></div>;
 
@@ -37,7 +37,7 @@ function Place({ cityName, onRemove }) {
                 <h3>{city}</h3>
             </div>
             <div className="card__info">
-                <img src={`http://openweathermap.org/img/wn/${img}@4x.png`} alt={description} />
+                <img src={`https://openweathermap.org/img/wn/${img}@4x.png`} alt={description} />
                 <div className="card__info_text">
                     <div className="card__info_temp">{temp}°</div>
                     <div className="card__info_fill"><span>Ощущается как&nbsp;</span>{Math.round(tempFill)}°</div>

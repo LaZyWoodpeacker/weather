@@ -3,16 +3,14 @@ const weatherApiKey = '5484ec107e02c3769b4d8cb3f6bb544e'
 const defaultData = [{
     "id": 1486209,
     "name": "Екатеринбург"
-}, {
-    "id": 524901,
-    "name": "Москва"
-}, {
+},
+{
     "id": 1508291,
     "name": "Челябинск"
 }];
 
-export const getDataFromApi = async cityName => {
-    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=ru&appid=${weatherApiKey}`);
+export const getDataFromApi = async cityId => {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?id=${cityId}&units=metric&lang=ru&appid=${weatherApiKey}`);
     if (response.status === 200) {
         return await response.json();
     } else {
@@ -20,18 +18,49 @@ export const getDataFromApi = async cityName => {
     }
 }
 
-export const getDataFromStorage = () => disp => {
+const getByCords = async () => {
+    const cords = await new Promise((resolve, rej) => {
+        navigator.geolocation.getCurrentPosition(pos => {
+            resolve(pos)
+        }, err => {
+            rej();
+        }, {
+            enableHighAccuracy: true,
+            timeout: 2000,
+            maximumAge: 0
+        })
+    })
+    const { latitude, longitude } = cords.coords;
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/find?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}`);
+    if (response.status === 200) {
+        const result = await response.json();
+        return result.list.map(city => ({
+            "id": city.id,
+            "name": city.name
+        }));
+    } else {
+        throw new Error('Not found')
+    }
+}
+
+export const getDataFromStorage = () => async disp => {
     const payload = JSON.parse(localStorage.getItem(propName));
     if (payload) {
         disp({ type: 'DATA_LOADED', payload });
     } else {
-        localStorage.setItem(propName, JSON.stringify(defaultData));
-        disp({ type: 'DATA_LOADED', payload: defaultData });
+        getByCords().then(city => {
+            localStorage.setItem(propName, JSON.stringify(city));
+            disp({ type: 'DATA_LOADED', payload: city });
+        }).catch((ex) => {
+            console.log(ex.message);
+            localStorage.setItem(propName, JSON.stringify(defaultData));
+            disp({ type: 'DATA_LOADED', payload: defaultData });
+        })
     }
 }
 
 export const addCity = cityName => async disp => {
-    const response = await fetch(`http://api.openweathermap.org/data/2.5/find?q=${cityName}&appid=${weatherApiKey}`);
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/find?q=${cityName}&appid=${weatherApiKey}`);
     if (response.status === 200) {
         const result = await response.json();
         if (result.count > 0) {
